@@ -12,13 +12,13 @@ for game_file in game_files:
     game_frames.append(game_frame)
 
 games = pd.concat(game_frames)
-games.loc[games['multi6'] == '??', 'multi5'] = ''
+games.loc[games['multi5'] == '??', 'multi5'] = ''
 
-identifers = games['multi2'].str.extract(r'(.LS(\d{4})\d{5})')
-identifers = identifers.fillna(method='ffill')
-identifers.columns = ['game_id', 'year']
+identifiers = games['multi2'].str.extract(r'(.LS(\d{4})\d{5})')
+identifiers = identifers.fillna(method='ffill')
+identifiers.columns = ['game_id', 'year']
 
-games = pd.concat([games, identifers], axis=1, sort=False)
+games = pd.concat([games, identifiers], axis=1, sort=False)
 
 games = games.fillna(' ')
 
